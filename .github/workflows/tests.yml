@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   tap_syntax:
-    if: github.repository == 'Homebrew/homebrew-core'
+#    if: github.repository == 'Homebrew/homebrew-core'
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/homebrew/ubuntu22.04:master
@@ -44,7 +44,7 @@ jobs:
   setup_tests:
     permissions:
       pull-requests: read
-    if: github.event_name == 'pull_request' && github.repository == 'Homebrew/homebrew-core'
+    if: github.event_name == 'pull_request' # && github.repository == 'Homebrew/homebrew-core'
     runs-on: ubuntu-22.04
     needs: tap_syntax
     outputs:
@@ -194,12 +194,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - runner: "13-arm64-${{github.run_id}}-${{github.run_attempt}}"
-          - runner: "13-${{github.run_id}}-${{github.run_attempt}}"
-          - runner: "12-arm64"
-          - runner: "12-${{github.run_id}}-${{github.run_attempt}}"
-          - runner: "11-arm64"
-          - runner: "11-${{github.run_id}}-${{github.run_attempt}}"
+#          - runner: "13-arm64-${{github.run_id}}-${{github.run_attempt}}"
+#          - runner: "13-${{github.run_id}}-${{github.run_attempt}}"
+#          - runner: "12-arm64"
+#          - runner: "12-${{github.run_id}}-${{github.run_attempt}}"
+#          - runner: "11-arm64"
+#          - runner: "11-${{github.run_id}}-${{github.run_attempt}}"
           - runner: ${{needs.setup_tests.outputs.linux-runner}}
             container:
               image: ghcr.io/homebrew/ubuntu22.04:master
