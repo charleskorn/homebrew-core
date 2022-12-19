@@ -35,7 +35,7 @@ jobs:
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
 
-      - run: brew test-bot --only-tap-syntax
+#      - run: brew test-bot --only-tap-syntax
 
       - run: brew test-bot --only-formulae-detect
         if: github.event_name == 'pull_request'
@@ -46,7 +46,7 @@ jobs:
       pull-requests: read
     if: github.event_name == 'pull_request' # && github.repository == 'Homebrew/homebrew-core'
     runs-on: ubuntu-22.04
-#    needs: tap_syntax
+    needs: tap_syntax
     outputs:
       syntax-only: ${{ steps.check-labels.outputs.syntax-only }}
       linux-runner: ${{ steps.check-labels.outputs.linux-runner }}
